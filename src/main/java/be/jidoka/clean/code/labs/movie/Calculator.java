@@ -20,6 +20,8 @@ public class Calculator implements Bill {
     public void addTicket(int age, boolean student) {
         if (student) {
             ticketPrices.add(8.0 + extraPrice);
+        } else if (age >= 65) {
+            ticketPrices.add(6.0 + extraPrice);
         } else {
             ticketPrices.add(11.0 + extraPrice);
         }
