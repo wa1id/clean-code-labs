@@ -14,6 +14,10 @@ public class Calculator implements Bill {
         if (threeD) {
             extraPrice += 3.0;
         }
+
+        if (runtime > 120) {
+            extraPrice += 1.5;
+        }
     }
 
     @Override

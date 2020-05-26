@@ -90,6 +90,16 @@ class BillTest {
         assertThat(ticketPrice).isEqualTo(14.0);
     }
 
+    @Test
+    public void overLengthShouldAddToTicketPrice() {
+        bill.startPurchase(121, DayOfWeek.WEDNESDAY, false, false);
+        bill.addTicket(18, false);
+
+        double ticketPrice = bill.finishPurchase();
+
+        assertThat(ticketPrice).isEqualTo(12.5);
+    }
+
     // ZOMBIE
 
     // Zero
