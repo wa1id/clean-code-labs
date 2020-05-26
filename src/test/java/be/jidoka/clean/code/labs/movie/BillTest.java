@@ -100,6 +100,18 @@ class BillTest {
         assertThat(ticketPrice).isEqualTo(12.5);
     }
 
+    @Test
+    public void groupPricingShouldEqualToGroupPrice() {
+        bill.startPurchase(100, DayOfWeek.WEDNESDAY, false, false);
+        for (int i = 0; i < 20; i++) {
+            bill.addTicket(18, false);
+        }
+
+        double ticketPrice = bill.finishPurchase();
+
+        assertThat(ticketPrice).isEqualTo(120.0);
+    }
+
     // ZOMBIE
 
     // Zero

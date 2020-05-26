@@ -36,6 +36,9 @@ public class Calculator implements Bill {
         double sum = 0.0;
 
         for (Double ticketPrice : ticketPrices) {
+            if (ticketPrices.size() >= 20) {
+                ticketPrice = 6.0 + extraPrice;
+            }
             sum += ticketPrice;
         }
 
