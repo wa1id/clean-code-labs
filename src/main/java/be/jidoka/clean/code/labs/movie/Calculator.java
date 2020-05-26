@@ -11,12 +11,16 @@ public class Calculator implements Bill {
 
     @Override
     public void startPurchase(int runtime, DayOfWeek dayOfWeek, boolean loge, boolean threeD) {
-        if (threeD) {
-            extraPrice += 3.0;
-        }
-
         if (runtime > 120) {
             extraPrice += 1.5;
+        }
+
+        if (dayOfWeek.equals(DayOfWeek.THURSDAY)) {
+            extraPrice -= 2.0;
+        }
+
+        if (threeD) {
+            extraPrice += 3.0;
         }
     }
 

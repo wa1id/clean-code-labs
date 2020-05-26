@@ -112,6 +112,16 @@ class BillTest {
         assertThat(ticketPrice).isEqualTo(120.0);
     }
 
+    @Test
+    public void specialMovieDay() {
+        bill.startPurchase(100, DayOfWeek.THURSDAY, false, false);
+        bill.addTicket(18, false);
+
+        double ticketPrice = bill.finishPurchase();
+
+        assertThat(ticketPrice).isEqualTo(9.0);
+    }
+
     // ZOMBIE
 
     // Zero
