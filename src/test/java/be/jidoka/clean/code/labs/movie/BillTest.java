@@ -67,6 +67,20 @@ class BillTest {
     }
 
     @Test
+    public void multipleSeniorCitizenShouldEqualDefaultPrice() {
+        // Arrange
+        bill.startPurchase(100, DayOfWeek.WEDNESDAY, false, false);
+        bill.addTicket(65, false);
+        bill.addTicket(65, false);
+
+        // Act
+        double ticketPrice = bill.finishPurchase();
+
+        // Assert
+        assertThat(ticketPrice).isEqualTo(12.0);
+    }
+
+    @Test
     public void _3DShouldAddToTicketPrice() {
         bill.startPurchase(100, DayOfWeek.WEDNESDAY, false, true);
         bill.addTicket(18, false);
