@@ -48,4 +48,8 @@ public class Calculator implements Bill {
 
         return sum;
     }
+
+    private void test() {
+
+    }
 }
