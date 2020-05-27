@@ -122,14 +122,4 @@ class BillTest {
         assertThat(ticketPrice).isEqualTo(9.0);
     }
 
-    // ZOMBIE
-
-    // Zero
-    // One /
-    // Many /
-
-    // Boundaries
-    // Interface /
-    // Exception
-
 }

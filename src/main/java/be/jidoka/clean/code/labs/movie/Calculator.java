@@ -6,50 +6,53 @@ import java.util.List;
 
 public class Calculator implements Bill {
 
-    private final List<Double> ticketPrices = new ArrayList<>();
-    private double extraPrice = 0.0;
+    private final List<Ticket> ticketPrices = new ArrayList<>();
+    private final List<ExtraOptions> extraOptions = new ArrayList<>();
 
     @Override
     public void startPurchase(int runtime, DayOfWeek dayOfWeek, boolean loge, boolean threeD) {
         if (runtime > 120) {
-            extraPrice += 1.5;
+            extraOptions.add(ExtraOptions.OVERLENGTH);
         }
 
         if (dayOfWeek.equals(DayOfWeek.THURSDAY)) {
-            extraPrice -= 2.0;
+            extraOptions.add(ExtraOptions.SPECIAL_MOVIE_DAY);
         }
 
         if (threeD) {
-            extraPrice += 3.0;
+            extraOptions.add(ExtraOptions.THREE_D);
         }
     }
 
     @Override
     public void addTicket(int age, boolean student) {
+        Ticket ticket;
+
         if (student) {
-            ticketPrices.add(8.0 + extraPrice);
+            ticket = new Ticket(8.0, extraOptions);
         } else if (age >= 65) {
-            ticketPrices.add(6.0 + extraPrice);
+            ticket = new Ticket(6.0, extraOptions);
         } else {
-            ticketPrices.add(11.0 + extraPrice);
+            ticket = new Ticket(11.0, extraOptions);
         }
+
+        ticketPrices.add(ticket);
     }
 
     @Override
     public double finishPurchase() {
-        double sum = 0.0;
+        double totalSum = 0.0;
 
-        for (Double ticketPrice : ticketPrices) {
+        for (Ticket ticket : ticketPrices) {
             if (ticketPrices.size() >= 20) {
-                ticketPrice = 6.0 + extraPrice;
+                extraOptions.add(ExtraOptions.GROUP);
+                ticket = new Ticket(6.0, extraOptions);
             }
-            sum += ticketPrice;
+            double sumOfExtraOptions = ticket.calculateExtraOptions(extraOptions);
+            totalSum += ticket.getTicketPrice() + sumOfExtraOptions;
         }
 
-        return sum;
+        return totalSum;
     }
 
-    private void test() {
-
-    }
 }
