@@ -30,7 +30,7 @@ public class Calculator implements Bill {
         // TODO: constant price in ticket class
         if (student) {
             ticket = new Ticket(8.0);
-        } else if (age >= 65) { // TODO: isSenior
+        } else if (isSenior(age)) {
             ticket = new Ticket(6.0);
         } else {
             ticket = new Ticket(11.0);
@@ -63,6 +63,10 @@ public class Calculator implements Bill {
         }
 
         return priceOfExtraOptions;
+    }
+
+    private boolean isSenior(int age) {
+        return age >= 65;
     }
 
 }
