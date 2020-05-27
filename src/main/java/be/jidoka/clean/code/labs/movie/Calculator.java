@@ -27,13 +27,13 @@ public class Calculator implements Bill {
     @Override
     public void addTicket(int age, boolean student) {
         Ticket ticket;
-
+        // TODO: constant price in ticket class
         if (student) {
-            ticket = new Ticket(8.0, extraOptions);
-        } else if (age >= 65) {
-            ticket = new Ticket(6.0, extraOptions);
+            ticket = new Ticket(8.0);
+        } else if (age >= 65) { // TODO: isSenior
+            ticket = new Ticket(6.0);
         } else {
-            ticket = new Ticket(11.0, extraOptions);
+            ticket = new Ticket(11.0);
         }
 
         ticketPrices.add(ticket);
@@ -45,14 +45,24 @@ public class Calculator implements Bill {
 
         for (Ticket ticket : ticketPrices) {
             if (ticketPrices.size() >= 20) {
-                extraOptions.add(ExtraOptions.GROUP);
-                ticket = new Ticket(6.0, extraOptions);
+                ticket = new Ticket(6.0);
             }
-            double sumOfExtraOptions = ticket.calculateExtraOptions(extraOptions);
+
+            double sumOfExtraOptions = calculateExtraOptions(extraOptions);
             totalSum += ticket.getTicketPrice() + sumOfExtraOptions;
         }
 
         return totalSum;
+    }
+
+    private double calculateExtraOptions(List<ExtraOptions> extraOptions) {
+        double priceOfExtraOptions = 0.0;
+
+        for (ExtraOptions option : extraOptions) {
+            priceOfExtraOptions += option.getExtraOptionsPrice();
+        }
+
+        return priceOfExtraOptions;
     }
 
 }
