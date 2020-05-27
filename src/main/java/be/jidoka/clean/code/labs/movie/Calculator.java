@@ -14,10 +14,11 @@ public class Calculator implements Bill {
     private static final double RATE_SENIOR = 6.0;
     private static final double RATE_GROUP = 6.0;
     private static final int GROUP_THRESHOLD = 20;
+    static final int OVERLENGTH_THRESHOLD = 120;
 
     @Override
     public void startPurchase(int runtime, DayOfWeek dayOfWeek, boolean loge, boolean threeD) {
-        if (runtime > 120) {
+        if (runtime > OVERLENGTH_THRESHOLD) {
             extraOptions.add(ExtraOptions.OVERLENGTH);
         }
 
